@@ -3,7 +3,7 @@
  *  Kontakt: gusmizdu@student.gu.se
  */
 
-package lab1;
+package lab2;
 
 import java.awt.Color;
 import java.awt.geom.Point2D;

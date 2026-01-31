@@ -3,7 +3,7 @@
  *  Kontakt: gusmizdu@student.gu.se
  */
 
-package lab1;
+package lab2;
 import static java.awt.Color.BLACK;
 
 public final class Volvo240 extends Vehicle {
