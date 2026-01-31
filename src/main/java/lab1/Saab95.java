@@ -39,9 +39,6 @@ public final class Saab95 extends Vehicle implements TurboChargable{
 
   @Override
   protected String subToString() {
-    Object highAbstraction = this;
-    return
-    ", \n\tturboOn = " + turboOn +
-    ", \n\tobjId = " + highAbstraction.toString();
+    return ", \n\tturboOn = " + turboOn;
   }
 }
