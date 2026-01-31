@@ -13,3 +13,7 @@ mvn clean verify
 ## Projekt struktur.
 ```
 ```
+
+## Dokumentation av planeringsstadiet.
+
+![Sketch of program structure](./img/Sketch.png)
