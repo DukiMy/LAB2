@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Garage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LAB2</a> &gt; <a href="index.source.html" class="el_package">lab2</a> &gt; <span class="el_source">Garage.java</span></div><h1>Garage.java</h1><pre class="source lang-java linenums">/**
+ *  Utfärdat av Durim Miziraj
+ *  Kontakt: gusmizdu@student.gu.se
+ *
+ *  Klassen är en konkret representation av ett Garage.
+ *  Objekt av denna klass har...
+ *    - Position
+ *    - Datastruktur för hållande av bilar.
+ *    - Ett maxantal bilar
+ *  Objekt av denna klass skall kunna...
+ *    - Lasta och lossa bilar
+ *    -
+ */
+
+package lab2;
+
+import java.util.ArrayList;
+import java.util.List;
+import static java.lang.System.out;
+
+public final class Garage&lt;T extends Vehicle&gt; extends GameObject {
+
+  private static final double LOAD_RADIUS = 10.0d;
+
+  private final int maxCapacity;
+<span class="nc" id="L26">  private final List&lt;T&gt; parkingLot = new ArrayList&lt;&gt;();</span>
+  private final Class&lt;T&gt; type;
+
+  public Garage(Class&lt;T&gt; type, double x, double y, int maxCapacity) {
+<span class="nc" id="L30">    super(x, y);</span>
+
+<span class="nc bnc" id="L32" title="All 4 branches missed.">    if (1 &gt; maxCapacity || maxCapacity &gt; 127) {</span>
+<span class="nc" id="L33">      throw new IllegalArgumentException(&quot;1 &gt; maxCapacity &gt; 127&quot;);</span>
+    }
+
+<span class="nc" id="L36">    this.type = type;</span>
+<span class="nc" id="L37">    this.maxCapacity = maxCapacity;</span>
+<span class="nc" id="L38">  }</span>
+
+  public int getFreeSlots() {
+<span class="nc" id="L41">    return maxCapacity - parkingLot.size();</span>
+  }
+
+  public void load() {
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    if (getFreeSlots() &lt;= 0) {</span>
+<span class="nc" id="L46">      out.println(&quot;The garage is full!&quot;);</span>
+<span class="nc" id="L47">      return;</span>
+    }
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    T v = getClosestInRange(type, LOAD_RADIUS, x -&gt; !parkingLot.contains(x));</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    if (v == null) return;</span>
+
+<span class="nc" id="L52">    parkingLot.add(v);</span>
+<span class="nc" id="L53">    v.mutatePoint(getX(), getY());</span>
+<span class="nc" id="L54">  }</span>
+
+  public void unLoad(T vehicle) {
+<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (parkingLot.remove(vehicle)) {</span>
+<span class="nc" id="L58">      vehicle.mutatePoint(getX() - 1.0, getY());</span>
+    } else {
+<span class="nc" id="L60">      out.println(&quot;That vehicle is not in the garage!&quot;);</span>
+    }
+<span class="nc" id="L62">  }</span>
+
+  public void printLoad() {
+<span class="nc" id="L65">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    for (T t : parkingLot) sb.append(t).append('\n');</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">    if (sb.length() == 0) sb.append(&quot;Parkinglot is empty.&quot;);</span>
+
+<span class="nc" id="L70">    out.println(sb);</span>
+<span class="nc" id="L71">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

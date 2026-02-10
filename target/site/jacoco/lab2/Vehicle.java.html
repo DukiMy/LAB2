@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Vehicle.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LAB2</a> &gt; <a href="index.source.html" class="el_package">lab2</a> &gt; <span class="el_source">Vehicle.java</span></div><h1>Vehicle.java</h1><pre class="source lang-java linenums">/**
+ *  Utfärdat av Durim Miziraj
+ *  Kontakt: gusmizdu@student.gu.se
+ */
+
+package lab2;
+
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
+import java.awt.Color;
+
+abstract class Vehicle extends GameObject implements Movable {
+
+	private int nrDoors;
+  private double direction;
+	private double enginePower;
+	private double currentSpeed;
+	private Color color;
+	private String modelName;
+
+	protected Vehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
+<span class="fc" id="L23">    super(x, y);</span>
+<span class="fc" id="L24">    this.direction = 0.0d;</span>
+<span class="fc" id="L25">		this.nrDoors = nrDoors;</span>
+<span class="fc" id="L26">		this.enginePower = enginePower;</span>
+<span class="fc" id="L27">		this.color = color;</span>
+<span class="fc" id="L28">		this.modelName = modelName;</span>
+<span class="fc" id="L29">	  stopEngine();</span>
+<span class="fc" id="L30">  }</span>
+
+<span class="fc" id="L32">  public double getDirection() { return direction; }</span>
+
+<span class="fc" id="L34">	public int getNrDoors() { return nrDoors; }</span>
+
+<span class="fc" id="L36">	public double getEnginePower() { return enginePower; }</span>
+
+<span class="fc" id="L38">	public double getCurrentSpeed() { return currentSpeed; }</span>
+
+<span class="fc" id="L40">	public int getColor() { return color.getRGB(); }</span>
+
+<span class="fc" id="L42">  public String getModelName() { return modelName; }</span>
+
+<span class="fc" id="L44">  public void setColor(int c) { color = new Color(c); }</span>
+
+<span class="fc" id="L46">	public void startEngine() { setCurrentSpeed(0.1d); }</span>
+
+<span class="fc" id="L48">	public void stopEngine() { setCurrentSpeed(0.0d); }</span>
+
+<span class="fc" id="L50">  public void turnLeft() { direction += 0.1d; }</span>
+
+<span class="fc" id="L52">  public void turnRight() { direction -= 0.1d; }</span>
+
+  private void validateArgInterval(double arg, double lowBound, double highBound) {
+<span class="fc bfc" id="L55" title="All 4 branches covered.">    if (arg &lt; lowBound || arg &gt; highBound) {</span>
+<span class="fc" id="L56">      throw new IllegalArgumentException();</span>
+    }
+<span class="fc" id="L58">  }</span>
+
+  public void brake(double speedDecrease) {
+<span class="fc" id="L61">    validateArgInterval(speedDecrease, 0.0d, 1.0d);</span>
+<span class="fc" id="L62">    decreaseSpeed(speedDecrease);</span>
+<span class="fc" id="L63">	}</span>
+
+  public void gas(double speedIncrease) {
+<span class="fc" id="L66">    validateArgInterval(speedIncrease, 0.0d, 1.0d);</span>
+<span class="fc" id="L67">    increaseSpeed(speedIncrease);</span>
+<span class="fc" id="L68">	}</span>
+
+  public void move() {
+<span class="fc" id="L71">    super.mutatePoint(</span>
+<span class="fc" id="L72">      super.getX() + sin(direction) * getCurrentSpeed(),</span>
+<span class="fc" id="L73">      super.getY() + cos(direction) * getCurrentSpeed()</span>
+    );
+<span class="fc" id="L75">  }</span>
+
+  private void setCurrentSpeed(double setSpeed) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">    if (setSpeed &gt; getEnginePower()) {</span>
+<span class="fc" id="L79">      currentSpeed = getEnginePower();</span>
+<span class="fc" id="L80">      return;</span>
+
+<span class="fc bfc" id="L82" title="All 2 branches covered.">    } else if (setSpeed &lt; 0.0d) {</span>
+<span class="fc" id="L83">      currentSpeed = 0.0d;</span>
+
+    } else {
+<span class="fc" id="L86">      currentSpeed = setSpeed;</span>
+    }
+<span class="fc" id="L88">  }</span>
+
+	private void increaseSpeed(double speedIncrease) {
+<span class="fc" id="L91">		setCurrentSpeed(</span>
+<span class="fc" id="L92">      increaseSpeedFactor(speedIncrease)</span>
+    );
+<span class="fc" id="L94">	}</span>
+
+	private void decreaseSpeed(double speedDecrease) {
+<span class="fc" id="L97">		setCurrentSpeed(</span>
+<span class="fc" id="L98">      decreaseSpeedFactor(speedDecrease)</span>
+    );
+<span class="fc" id="L100">	}</span>
+
+  protected abstract double increaseSpeedFactor(double speedIncrease);
+  protected abstract double decreaseSpeedFactor(double speedDecrease);
+  protected abstract String subToString();
+
+  @Override
+  public String toString() {
+<span class="fc" id="L108">    return &quot;Vehicle{&quot; +</span>
+          &quot; \n\tmodelName = \&quot;&quot; + modelName + '\&quot;' +
+          &quot;, \n\trDoors = &quot; + nrDoors +
+          &quot;, \n\tenginePower = &quot; + enginePower +
+          &quot;, \n\tcurrentSpeed = &quot; + currentSpeed +
+          &quot;, \n\tdirection = &quot; + direction +
+<span class="fc" id="L114">          &quot;, \n\tpos = (&quot; + getX() + &quot;, &quot; + getY() + &quot;)&quot; +</span>
+<span class="fc" id="L115">          &quot;, \n\tcolor = #&quot; + String.format(&quot;%06X&quot;, color.getRGB() &amp; 0x00FFFFFF) + subToString() +</span>
+          &quot;\n}&quot;;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

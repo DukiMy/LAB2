@@ -6,7 +6,7 @@
 package lab2;
 import static java.awt.Color.BLACK;
 
-public final class Volvo240 extends Vehicle {
+public final class Volvo240 extends Vehicle implements Car{
 
 	private static final double TRIM_FACTOR = 1.25d;
 
@@ -15,8 +15,10 @@ public final class Volvo240 extends Vehicle {
       /* Number of doors */ 4,
       /* Engine power    */ 100.0d,
       /* Vehicle color   */ BLACK,
-      /* vehicle model   */ "Volvo240"
-    );
+      /* vehicle model   */ "Volvo240",
+      /* X position      */ 0.0d,
+      /* Y position      */ 0.0d
+     );
 	}
 
 	private double speedFactor() {

@@ -5,14 +5,13 @@
 
 package lab2;
 
-import java.awt.Color;
-import java.awt.geom.Point2D;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
-abstract class Vehicle implements Movable {
+import java.awt.Color;
 
-  private final Point2D pos = new Point2D.Double(0.0d, 0.0d);
+abstract class Vehicle extends GameObject implements Movable {
+
 	private int nrDoors;
   private double direction;
 	private double enginePower;
@@ -20,7 +19,8 @@ abstract class Vehicle implements Movable {
 	private Color color;
 	private String modelName;
 
-	protected Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
+	protected Vehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
+    super(x, y);
     this.direction = 0.0d;
 		this.nrDoors = nrDoors;
 		this.enginePower = enginePower;
@@ -28,10 +28,6 @@ abstract class Vehicle implements Movable {
 		this.modelName = modelName;
 	  stopEngine();
   }
-
-  public double getX() { return pos.getX(); }
-
-  public double getY() { return pos.getY(); }
 
   public double getDirection() { return direction; }
 
@@ -72,9 +68,9 @@ abstract class Vehicle implements Movable {
 	}
 
   public void move() {
-    pos.setLocation(
-      pos.getX() + sin(direction) * getCurrentSpeed(),
-      pos.getY() + cos(direction) * getCurrentSpeed()
+    super.mutatePoint(
+      super.getX() + sin(direction) * getCurrentSpeed(),
+      super.getY() + cos(direction) * getCurrentSpeed()
     );
   }
 
@@ -115,7 +111,7 @@ abstract class Vehicle implements Movable {
           ", \n\tenginePower = " + enginePower +
           ", \n\tcurrentSpeed = " + currentSpeed +
           ", \n\tdirection = " + direction +
-          ", \n\tpos = (" + pos.getX() + ", " + pos.getY() + ")" +
+          ", \n\tpos = (" + getX() + ", " + getY() + ")" +
           ", \n\tcolor = #" + String.format("%06X", color.getRGB() & 0x00FFFFFF) + subToString() +
           "\n}";
   }
