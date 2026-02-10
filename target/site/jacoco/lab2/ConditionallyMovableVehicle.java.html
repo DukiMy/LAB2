@@ -22,11 +22,11 @@ abstract class ConditionallyMovableVehicle extends Vehicle {
   protected abstract boolean canMove();
 
   @Override
-<span class="nc bnc" id="L25" title="All 2 branches missed.">  public void move() { if (canMove()) super.move(); }</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">  public void move() { if (canMove()) super.move(); }</span>
 
   @Override
   public void gas(double speedIncrease) {
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">    if (canMove()) super.gas(speedIncrease);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">    if (canMove()) super.gas(speedIncrease);</span>
 <span class="fc" id="L30">  }</span>
 
   protected abstract double speedFactor();

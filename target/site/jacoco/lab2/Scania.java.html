@@ -23,36 +23,40 @@ public final class Scania extends ConditionallyMovableVehicle implements Tippabl
 <span class="fc" id="L23">  }</span>
 
   public void setTipBedAngle(byte angle) {
-<span class="nc" id="L26">    double speed = getCurrentSpeed();</span>
+<span class="fc" id="L26">    double speed = getCurrentSpeed();</span>
 
-<span class="nc bnc" id="L28" title="All 2 branches missed.">    if (speed &gt; 0) {</span>
-<span class="nc" id="L29">      throw new IllegalStateException(&quot;Vehicle tried to move while tipbed angle &gt; 0&quot;);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">    if (speed &gt; 0) {</span>
+<span class="fc" id="L29">      throw new IllegalStateException(&quot;Vehicle tried to move while tipbed angle &gt; 0&quot;);</span>
     }
 
-<span class="nc bnc" id="L32" title="All 4 branches missed.">    if (70 &lt; angle || angle &lt; 0) {</span>
-<span class="nc" id="L33">      throw new IllegalArgumentException(</span>
-<span class="nc" id="L34">        String.format(&quot;Argument 'angle' == %d, is out of range.&quot;, angle)</span>
+<span class="fc bfc" id="L32" title="All 4 branches covered.">    if (70 &lt; angle || angle &lt; 0) {</span>
+<span class="fc" id="L33">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L34">        String.format(&quot;Argument 'angle' == %d, is out of range.&quot;, angle)</span>
       );
     }
 
-<span class="nc" id="L38">    tipBedAngle = angle;</span>
-<span class="nc" id="L39">  }</span>
+<span class="fc" id="L38">    tipBedAngle = angle;</span>
+<span class="fc" id="L39">  }</span>
 
-  @Override
-  public boolean canMove() {
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    return tipBedAngle == 0;</span>
+  public double getTipBedAngle() {
+<span class="fc" id="L42">    return tipBedAngle;</span>
   }
 
   @Override
-<span class="fc" id="L47">  protected double speedFactor() { return getEnginePower() * 0.01d; }</span>
+  public boolean canMove() {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    return tipBedAngle == 0;</span>
+  }
+
+  @Override
+<span class="fc" id="L51">  protected double speedFactor() { return getEnginePower() * 0.01d; }</span>
 
   @Override
   protected String subToString() {
-<span class="fc" id="L51">    StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L52">    sb.append(&quot;, \n\ttipBedAngle = &quot; + tipBedAngle + '°')</span>
-<span class="fc" id="L53">      .append(&quot;, \n\tcanMove = &quot; + canMove());</span>
+<span class="fc" id="L55">    StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L56">    sb.append(&quot;, \n\ttipBedAngle = &quot; + tipBedAngle + '°')</span>
+<span class="fc" id="L57">      .append(&quot;, \n\tcanMove = &quot; + canMove());</span>
 
-<span class="fc" id="L55">    return sb.toString();</span>
+<span class="fc" id="L59">    return sb.toString();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

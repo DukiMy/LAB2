@@ -39,7 +39,7 @@ public final class VolvoFH16 extends ConditionallyMovableVehicle implements Ramp
     isRampLowered = false;
   }
 
-  private boolean canLoad() {
+  public boolean canLoad() {
     return (getCurrentSpeed() == 0 && isRampLowered);
   }
 

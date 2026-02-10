@@ -11,4 +11,5 @@ interface Loadable {
   void load();
   void unLoad();
   void printLoad();
+  boolean canLoad();
 }

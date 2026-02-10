@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="lab2.VehicleTest" time="0.047" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="lab2.LoadableVehicleTests" time="0.071" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -60,58 +60,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="vehicleMovesForward" classname="lab2.VehicleTest" time="0.004"/>
-  <testcase name="vehicleHasDoors" classname="lab2.VehicleTest" time="0.002"/>
-  <testcase name="toStringIsOverridden" classname="lab2.VehicleTest" time="0.012">
-    <system-out><![CDATA[Vehicle{ 
-	modelName = "Volvo240", 
-	rDoors = 4, 
-	enginePower = 100.0, 
-	currentSpeed = 0.0, 
-	direction = 0.0, 
-	pos = (0.0, 0.0), 
-	color = #000000, 
-	TRIM_FACTOR = 1.25
-}
-Vehicle{ 
-	modelName = "Saab95", 
-	rDoors = 2, 
-	enginePower = 125.0, 
-	currentSpeed = 0.0, 
-	direction = 0.0, 
-	pos = (0.0, 0.0), 
-	color = #FF0000, 
-	turboOn = false
-}
-Vehicle{ 
-	modelName = "VolvoFH16", 
-	rDoors = 2, 
-	enginePower = 200.0, 
-	currentSpeed = 0.0, 
-	direction = 0.0, 
-	pos = (0.0, 0.0), 
-	color = #FFFF00, 
-	isRampLowered = false
-	Cargohold is empty.
-}
-Vehicle{ 
-	modelName = "Scania", 
-	rDoors = 2, 
-	enginePower = 200.0, 
-	currentSpeed = 0.0, 
-	direction = 0.0, 
-	pos = (0.0, 0.0), 
-	color = #0000FF, 
-	tipBedAngle = 0°, 
-	canMove = true
-}
-]]></system-out>
-  </testcase>
-  <testcase name="turningChangesDirection" classname="lab2.VehicleTest" time="0.001"/>
-  <testcase name="setCurrentSpeedBoundsWork" classname="lab2.VehicleTest" time="0.004"/>
-  <testcase name="colorIsMutatedAndAccessed" classname="lab2.VehicleTest" time="0.001"/>
-  <testcase name="brakeReducesSpeed" classname="lab2.VehicleTest" time="0.004"/>
-  <testcase name="turboIncreasesSpeed" classname="lab2.VehicleTest" time="0.001"/>
-  <testcase name="brakeRejectsOutOfRange" classname="lab2.VehicleTest" time="0.002"/>
-  <testcase name="gasRejectsOutOfRange" classname="lab2.VehicleTest" time="0.002"/>
+  <testcase name="rampLowers" classname="lab2.LoadableVehicleTests" time="0.037"/>
 </testsuite>

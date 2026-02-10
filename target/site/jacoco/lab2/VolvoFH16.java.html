@@ -31,16 +31,16 @@ public final class VolvoFH16 extends ConditionallyMovableVehicle implements Ramp
 <span class="fc" id="L31">  }</span>
 
   public void lowerRamp() {
-<span class="nc bnc" id="L34" title="All 2 branches missed.">    if (getCurrentSpeed() &gt; 0) return;</span>
-<span class="nc" id="L35">    isRampLowered = true;</span>
-<span class="nc" id="L36">  }</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">    if (getCurrentSpeed() &gt; 0) return;</span>
+<span class="fc" id="L35">    isRampLowered = true;</span>
+<span class="fc" id="L36">  }</span>
 
   public void raiseRamp() {
 <span class="fc" id="L39">    isRampLowered = false;</span>
 <span class="fc" id="L40">  }</span>
 
-  private boolean canLoad() {
-<span class="nc bnc" id="L43" title="All 4 branches missed.">    return (getCurrentSpeed() == 0 &amp;&amp; isRampLowered);</span>
+  public boolean canLoad() {
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">    return (getCurrentSpeed() == 0 &amp;&amp; isRampLowered);</span>
   }
 
   public void load() {

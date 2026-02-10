@@ -7,7 +7,8 @@
 
 package lab2;
 
-interface Tippable {
+interface Tippable extends Movable{
 
   void setTipBedAngle(byte angle);
+  double getTipBedAngle();
 }
