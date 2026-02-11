@@ -22,7 +22,10 @@ public class TippableVehiclesTest {
       tippableVehicle.setTipBedAngle(angle);
       after = tippableVehicle.getTipBedAngle();
 
-      assertTrue(before != after);
+      assertTrue(
+        before != after,
+        "Flaket borde byta vinkel."
+      );
     }
   }
 
@@ -37,12 +40,14 @@ public class TippableVehiclesTest {
     for (Tippable tippableVehicle : tippableVehicles) {
       assertThrows(
         IllegalArgumentException.class,
-         () -> tippableVehicle.setTipBedAngle(lowerExceedingAngle)
+         () -> tippableVehicle.setTipBedAngle(lowerExceedingAngle),
+         "IllegalArgumentException borde kastas."
       );
 
       assertThrows(
         IllegalArgumentException.class,
-         () -> tippableVehicle.setTipBedAngle(upperExceedingAngle)
+         () -> tippableVehicle.setTipBedAngle(upperExceedingAngle),
+         "IllegalArgumentException borde kastas."
       );
     }
   }
@@ -68,7 +73,11 @@ public class TippableVehiclesTest {
       tipped.move();
       afterMoveAttempt = tipped.getPoint();
 
-      assertEquals(beforeMoveAttempt, afterMoveAttempt);
+      assertEquals(
+        beforeMoveAttempt,
+        afterMoveAttempt,
+        "Bilen borde inte röra sig när flaket är tippat till 1 vinkelgrad"
+      );
 
       tipped.stopEngine();
       tippableVehicle.setTipBedAngle(highestTipAngle);
@@ -76,7 +85,11 @@ public class TippableVehiclesTest {
 
       tipped.move();
       afterMoveAttempt = tipped.getPoint();
-      assertEquals(beforeMoveAttempt, afterMoveAttempt);
+      assertEquals(
+        beforeMoveAttempt,
+        afterMoveAttempt,
+        "Bilen borde inte röra sig när flaket är tippat till max vinkelgrad."
+      );
     }
   }
 
@@ -97,12 +110,14 @@ public class TippableVehiclesTest {
 
       assertThrows(
         IllegalStateException.class,
-        () -> tippableVehicle.setTipBedAngle(lowestTipAngle)
+        () -> tippableVehicle.setTipBedAngle(lowestTipAngle),
+        "IllegalStateException bör kastas."
       );
 
       assertThrows(
         IllegalStateException.class,
-        () -> tippableVehicle.setTipBedAngle(highestTipAngle)
+        () -> tippableVehicle.setTipBedAngle(highestTipAngle),
+        "IllegalStateException bör kastas."
       );
     }
   }

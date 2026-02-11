@@ -31,7 +31,7 @@ public final class VolvoFH16 extends ConditionallyMovableVehicle implements Ramp
 <span class="fc" id="L31">  }</span>
 
   public void lowerRamp() {
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">    if (getCurrentSpeed() &gt; 0) return;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    if (getCurrentSpeed() &gt; 0) return;</span>
 <span class="fc" id="L35">    isRampLowered = true;</span>
 <span class="fc" id="L36">  }</span>
 
@@ -39,83 +39,87 @@ public final class VolvoFH16 extends ConditionallyMovableVehicle implements Ramp
 <span class="fc" id="L39">    isRampLowered = false;</span>
 <span class="fc" id="L40">  }</span>
 
+  public boolean isRampLowered() {
+<span class="fc" id="L43">    return isRampLowered;</span>
+  }
+
   public boolean canLoad() {
-<span class="pc bpc" id="L43" title="1 of 4 branches missed.">    return (getCurrentSpeed() == 0 &amp;&amp; isRampLowered);</span>
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">    return (getCurrentSpeed() == 0 &amp;&amp; isRampLowered);</span>
   }
 
   public void load() {
     Vehicle v;
 
-<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (!canLoad()) {</span>
-<span class="nc" id="L50">      out.println(&quot;Can not load, ramp is not lowered!&quot;);</span>
-<span class="nc" id="L51">      return;</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">    if (!canLoad()) {</span>
+<span class="fc" id="L54">      out.println(&quot;Can not load, ramp is not lowered!&quot;);</span>
+<span class="fc" id="L55">      return;</span>
     }
 
-<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (cargo.size() &gt;= MAX_CAPACITY) {</span>
-<span class="nc" id="L55">      out.println(&quot;Can not load, &quot; + getModelName() +&quot; is full!&quot;);</span>
-<span class="nc" id="L56">      return;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (cargo.size() &gt;= MAX_CAPACITY) {</span>
+<span class="fc" id="L59">      out.println(&quot;Can not load, &quot; + getModelName() +&quot; is full!&quot;);</span>
+<span class="fc" id="L60">      return;</span>
     }
 
-<span class="nc" id="L59">    v = getClosestInRange(</span>
+<span class="fc" id="L63">    v = getClosestInRange(</span>
       Vehicle.class,
       LOAD_RADIUS,
-<span class="nc bnc" id="L62" title="All 4 branches missed.">      car -&gt; (car instanceof Car) &amp;&amp; !cargo.contains(car)</span>
+<span class="pc bpc" id="L66" title="1 of 4 branches missed.">      car -&gt; (car instanceof Car) &amp;&amp; !cargo.contains(car)</span>
     );
 
-<span class="nc bnc" id="L65" title="All 2 branches missed.">    if (v == null) return;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">    if (v == null) return;</span>
 
-<span class="nc" id="L67">    cargo.push(v);</span>
-<span class="nc" id="L68">    v.mutatePoint(getX(), getY());</span>
-<span class="nc" id="L69">  }</span>
+<span class="fc" id="L71">    cargo.push(v);</span>
+<span class="fc" id="L72">    v.mutatePoint(getX(), getY());</span>
+<span class="fc" id="L73">  }</span>
 
   public void unLoad() {
-<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (!canLoad()) {</span>
-<span class="nc" id="L73">      out.println(&quot;Can not unload, ramp is not lowered!&quot;);</span>
-<span class="nc" id="L74">      return;</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">    if (!canLoad()) {</span>
+<span class="fc" id="L77">      out.println(&quot;Can not unload, ramp is not lowered!&quot;);</span>
+<span class="fc" id="L78">      return;</span>
     }
 
-<span class="nc bnc" id="L77" title="All 2 branches missed.">    if (cargo.isEmpty()) {</span>
-<span class="nc" id="L78">      out.println(&quot;There is nothing to unload!&quot;);</span>
-<span class="nc" id="L79">      return;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">    if (cargo.isEmpty()) {</span>
+<span class="fc" id="L82">      out.println(&quot;There is nothing to unload!&quot;);</span>
+<span class="fc" id="L83">      return;</span>
     }
 
-<span class="nc" id="L82">    Vehicle v = cargo.pop();</span>
-<span class="nc" id="L83">    v.mutatePoint(getX() - 1.0, getY());</span>
-<span class="nc" id="L84">  }</span>
+<span class="fc" id="L86">    Vehicle v = cargo.pop();</span>
+<span class="fc" id="L87">    v.mutatePoint(getX() - 1.0, getY());</span>
+<span class="fc" id="L88">  }</span>
 
   private StringBuilder loadToString() {
-<span class="fc" id="L87">    StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L91">    StringBuilder sb = new StringBuilder();</span>
 
-<span class="pc bpc" id="L89" title="1 of 2 branches missed.">    if (cargo.isEmpty()) return sb.append(&quot;Cargohold is empty.&quot;);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">    if (cargo.isEmpty()) return sb.append(&quot;Cargohold is empty.&quot;);</span>
 
-<span class="nc bnc" id="L91" title="All 2 branches missed.">    for (Vehicle v : cargo) sb.append(v).append('\n');</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    for (Vehicle v : cargo) sb.append(v).append('\n');</span>
 
-<span class="nc" id="L93">    return sb;</span>
+<span class="nc" id="L97">    return sb;</span>
   }
 
-<span class="nc" id="L96">  public void printLoad() { out.println(loadToString()); }</span>
+<span class="nc" id="L100">  public void printLoad() { out.println(loadToString()); }</span>
 
-<span class="fc" id="L98">	protected double speedFactor() { return getEnginePower() * 0.01d; }</span>
+<span class="fc" id="L102">	protected double speedFactor() { return getEnginePower() * 0.01d; }</span>
 
   @Override
   public void move() {
-<span class="nc" id="L102">    super.move();</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">    for (Vehicle v : cargo) {</span>
-<span class="nc" id="L104">      v.mutatePoint(getX(), getY());</span>
-<span class="nc" id="L105">    }</span>
-<span class="nc" id="L106">  }</span>
+<span class="fc" id="L106">    super.move();</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">    for (Vehicle v : cargo) {</span>
+<span class="fc" id="L108">      v.mutatePoint(getX(), getY());</span>
+<span class="fc" id="L109">    }</span>
+<span class="fc" id="L110">  }</span>
 
   @Override
-<span class="pc bpc" id="L109" title="1 of 2 branches missed.">  protected boolean canMove() { return !isRampLowered; }</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">  protected boolean canMove() { return !isRampLowered; }</span>
 
   @Override
   protected String subToString() {
-<span class="fc" id="L113">    StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L117">    StringBuilder sb = new StringBuilder();</span>
 
-<span class="fc" id="L115">    sb.append(&quot;, \n\tisRampLowered = &quot; + isRampLowered)</span>
-<span class="fc" id="L116">      .append(&quot;\n\t&quot; + loadToString());</span>
+<span class="fc" id="L119">    sb.append(&quot;, \n\tisRampLowered = &quot; + isRampLowered)</span>
+<span class="fc" id="L120">      .append(&quot;\n\t&quot; + loadToString());</span>
 
-<span class="fc" id="L118">    return sb.toString();</span>
+<span class="fc" id="L122">    return sb.toString();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -11,4 +11,5 @@ package lab2;
 interface RampOperated extends Loadable {
   void lowerRamp();
   void raiseRamp();
+  boolean isRampLowered();
 }

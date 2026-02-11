@@ -241,7 +241,7 @@ class VehicleTest {
     for (Vehicle v : vehicles) {
       assertTrue(
         0 < v.getNrDoors(),
-        "Vehicle " + v.getModelName() + " has no doors."
+        "Vehicle " + v.getModelName() + " har inga dörrar."
       );
     }
   }
