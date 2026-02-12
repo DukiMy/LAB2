@@ -10,7 +10,7 @@ mvn clean verify
 ## Testresultat med coverage
 Problem med github workern, testresultatet som länkats är gammalt. Se ```.\target\site\jacoco\index.html ``` för aktuellt resultat.
 
-~~[https://dukimy.github.io/LAB2/](https://dukimy.github.io/LAB2/)~~
+~~[https://dukimy.github.io/LAB2/](https://dukimy.github.io/LAB2
 
 ## Projekt struktur.
 ```
