@@ -10,7 +10,15 @@ mvn clean verify
 ## Testresultat med coverage
 Problem med github workern, testresultatet som länkats är gammalt. Se ```.\target\site\jacoco\index.html ``` för aktuellt resultat.
 
-~~[https://dukimy.github.io/LAB2/](https://dukimy.github.io/LAB2
+~~[https://dukimy.github.io/LAB2/](https://dukimy.github.io/LAB2)~~
+
+Uppdatering: Min lokala maskin kör testerna i en annan ordning än github actions, detta verkar bero på att junit kör testerna i en annan ordning på Linux än på Windows.
+
+Får ni problem med testerna, kör dem i denna ordning.
+1. GarageTests.java
+2. LoadableVehicleTests.java
+3. TippableVehiclesTest.java
+4. VehicleTest.java
 
 ## Projekt struktur.
 ```
